@@ -25,6 +25,10 @@
  * limitations under the License.
  *
  */
+var Q;
+
+// TODO hook setTimeout into Timer QML objects? #Overkill
+function setTimeout (f, ms) { f(); }
 
 (function (definition) {
     "use strict";
@@ -45,6 +49,10 @@
     // RequireJS
     } else if (typeof define === "function" && define.amd) {
         define(definition);
+
+    // Qt
+    } else if (typeof Qt === "object") {
+        Q = definition();
 
     // SES (Secure EcmaScript)
     } else if (typeof ses !== "undefined") {
